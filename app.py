@@ -3,17 +3,11 @@ from flask import Flask, request
 
 import datetime
 
-from ibm_watson import ToneAnalyzerV3
 
-from constants import VERIFICATION_TOKEN, IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY
+from constants import VERIFICATION_TOKEN
+from analysis import tone_analysing
 
 app = Flask(__name__)
-
-tone_analyser = ToneAnalyzerV3(
-    version=IBM_WATSON_VERSION,
-    iam_apikey=IBM_WATSON_APIKEY,
-    url=IBM_WATSON_URL
-)
 
 
 @app.route('/', methods=['GET'])
@@ -44,7 +38,8 @@ def webhook():
                         text_msg = message['message']['text']
                     else:
                         text_msg = 'no text sent'
-                    print(sender_id, timestamp, text_msg)
+                    mood = tone_analysing(text_msg)
+                    print(sender_id, timestamp, mood)
 
     return 'ok', 200
 
