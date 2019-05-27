@@ -1,5 +1,5 @@
 import os
-from .env_vars import VERIFICATION_TOKEN_DEFAULT
+from env_vars import VERIFICATION_TOKEN_DEFAULT
 
 
 def get_env_variable(var_name, default=None):
