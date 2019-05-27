@@ -1,5 +1,7 @@
 from flask import Flask
 
+from .constants import VERIFICATION_TOKEN
+
 app = Flask(__name__)
 
 

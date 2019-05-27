@@ -1,0 +1,11 @@
+import os
+from .env_vars import VERIFICATION_TOKEN_DEFAULT
+
+
+def get_env_variable(var_name, default=None):
+    """Check if the var_name is in virtual environment or pass a default"""
+    if var_name not in os.environ:
+        os.environ[var_name] = default
+    return os.environ[var_name]
+
+VERIFICATION_TOKEN = get_env_variable('VERIFICATION_TOKEN', VERIFICATION_TOKEN_DEFAULT)
