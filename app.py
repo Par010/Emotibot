@@ -1,6 +1,8 @@
 import sys
 from flask import Flask, request
 
+import datetime
+
 from constants import VERIFICATION_TOKEN
 
 app = Flask(__name__)
@@ -21,6 +23,21 @@ def webhook():
     """Handles POST request sent by facebook webhook, receives messages and handles them"""
     data = request.get_json()
     log(data)
+    if data['object'] == 'page':
+        for entry in data['entry']:
+            for message in entry['messaging']:
+                # extract sender_id from the message sent
+                sender_id = message['sender']['id']
+                # extract timestamp from the message sent and store in datetime UTC format
+                timestamp = datetime.datetime.utcfromtimestamp(message['timestamp']/1000.0)
+                if message.get('message'):
+                    if 'text' in message['message']:
+                        # check if text attribute is present in message
+                        text_msg = message['message']['text']
+                    else:
+                        text_msg = 'no text sent'
+                    print(sender_id, timestamp, text_msg)
+
     return 'ok', 200
 
 
