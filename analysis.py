@@ -4,6 +4,7 @@ from ibm_watson import ToneAnalyzerV3
 
 
 from constants import IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY
+from database import message_details
 
 
 # IBM Watson Tone Analyzer set up
@@ -46,3 +47,19 @@ def tone_analysing(text_msg):
                         positive = tone['score']
     negative = max(emotion_dict['sadness'], emotion_dict['anger'], emotion_dict['disgust'], emotion_dict['fear'])
     return [positive, negative]
+
+
+def generate_response(sender_id):
+    """This function is responsible for generating appropriate response after passing sender_id as the _id.
+    All the messages sent by a particular sender are analyzed.
+    """
+    sender_msg_lst = []
+    # find the object with _id as the sender_id passed
+    sender = message_details.find_one({'_id': sender_id})
+    for message in sender.get('messages'):
+        # every message sent by the sender is collected in sender_msg_lst
+        sender_msg_lst.append(message)
+        # print(message)
+        print(message['timestamp'], message['positive'], message['negative'])
+    # response = calculate_weights(sender_msg_lst)
+    # return response

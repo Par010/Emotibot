@@ -5,7 +5,7 @@ import datetime
 
 
 from constants import VERIFICATION_TOKEN
-from analysis import tone_analysing
+from analysis import tone_analysing, generate_response
 from database import insert_update_msg_details
 
 app = Flask(__name__)
@@ -42,6 +42,7 @@ def webhook():
                     mood = tone_analysing(text_msg)
                     print(sender_id, timestamp, mood)
                     insert_update_msg_details(sender_id, timestamp, mood[0], mood[1])
+                    response = generate_response(sender_id)
 
     return 'ok', 200
 
