@@ -1,5 +1,5 @@
 import os
-from env_vars import VERIFICATION_TOKEN_DEFAULT, IBM_WATSON_APIKEY_DEFAULT
+from env_vars import VERIFICATION_TOKEN_DEFAULT, IBM_WATSON_APIKEY_DEFAULT, DATABASE_URL_DEFAULT
 
 
 def get_env_variable(var_name, default=None):
@@ -12,3 +12,4 @@ VERIFICATION_TOKEN = get_env_variable('VERIFICATION_TOKEN', VERIFICATION_TOKEN_D
 IBM_WATSON_VERSION = '2016-05-19'
 IBM_WATSON_URL = 'https://gateway.watsonplatform.net/tone-analyzer/api'
 IBM_WATSON_APIKEY = get_env_variable('IBM_WATSON_APIKEY', IBM_WATSON_APIKEY_DEFAULT)
+DATABASE_URL = get_env_variable('DATABASE_URL', DATABASE_URL_DEFAULT)
