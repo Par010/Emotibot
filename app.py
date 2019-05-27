@@ -3,9 +3,17 @@ from flask import Flask, request
 
 import datetime
 
-from constants import VERIFICATION_TOKEN
+from ibm_watson import ToneAnalyzerV3
+
+from constants import VERIFICATION_TOKEN, IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY
 
 app = Flask(__name__)
+
+tone_analyser = ToneAnalyzerV3(
+    version=IBM_WATSON_VERSION,
+    iam_apikey=IBM_WATSON_APIKEY,
+    url=IBM_WATSON_URL
+)
 
 
 @app.route('/', methods=['GET'])
