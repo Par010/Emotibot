@@ -6,6 +6,7 @@ from ibm_watson import ToneAnalyzerV3
 from constants import IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY
 
 
+# IBM Watson Tone Analyzer set up
 tone_analyser = ToneAnalyzerV3(
     version=IBM_WATSON_VERSION,
     iam_apikey=IBM_WATSON_APIKEY,
@@ -14,6 +15,7 @@ tone_analyser = ToneAnalyzerV3(
 
 
 def tone_analysing(text_msg):
+    """This function returns a list with calculated values of positive and negative after analysis of the text_msg"""
     # dict to store the emotions returned by IBM Watson for the text_msg
     emotion_dict = defaultdict(int)
     # initialize positive and negative values which are calculated using the emotion_dict
