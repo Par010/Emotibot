@@ -1,10 +1,12 @@
-from collections import defaultdict
-
 from ibm_watson import ToneAnalyzerV3
 
+from collections import defaultdict
+import datetime
 
-from constants import IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY
+
+from constants import IBM_WATSON_URL, IBM_WATSON_VERSION, IBM_WATSON_APIKEY, MINUTES_FOR_A_CHAT_SESSION
 from database import message_details
+from helpers import get_time_difference_from_now
 
 
 # IBM Watson Tone Analyzer set up
@@ -46,7 +48,7 @@ def tone_analysing(text_msg):
                     if tone['tone_id'] == 'joy':
                         positive = tone['score']
     negative = max(emotion_dict['sadness'], emotion_dict['anger'], emotion_dict['disgust'], emotion_dict['fear'])
-    return [positive, negative]
+    return [round(positive, 2), round(negative, 2)]
 
 
 def generate_response(sender_id):
@@ -59,7 +61,40 @@ def generate_response(sender_id):
     for message in sender.get('messages'):
         # every message sent by the sender is collected in sender_msg_lst
         sender_msg_lst.append(message)
-        # print(message)
-        print(message['timestamp'], message['positive'], message['negative'])
-    # response = calculate_weights(sender_msg_lst)
+    response = calculate_weights(sender_msg_lst)
+    return response
+
+
+def calculate_weights(sender_msg_lst):
+    """This function calculates the weighted positive and negative values based on the time passed since sending the
+    message, it works on the idea that messages sent recently are more relevant than older messages. A weighted ratio is
+    calculated after averaging the weighted positive and negative values derived from the sender's messages.
+    """
+    # positive and negative sum of all individual messages sent by the sender
+    positive_sum = 0
+    negative_sum = 0
+    current_time = datetime.datetime.utcnow()
+    # the number of messages sent by the sender in the session
+    messeges_within_session_count = 0
+    for msg_dict in sender_msg_lst:
+        # find the minutes passed from the current time for each message
+        minutes_passed = round(get_time_difference_from_now(msg_dict['timestamp'], current_time), 0)
+        # if the minutes_passed is greater than the session minutes then don't consider those messages for calculation
+        if minutes_passed > MINUTES_FOR_A_CHAT_SESSION:
+            msg_dict['positive'] *= 0
+            msg_dict['negative'] *= 0
+        else:
+            # formula to calculate the weighted factor
+            weighted_factor = (MINUTES_FOR_A_CHAT_SESSION - minutes_passed)/MINUTES_FOR_A_CHAT_SESSION
+            # multiply the positive and negative values with the weighted_factor
+            msg_dict['positive'] *= weighted_factor
+            msg_dict['negative'] *= weighted_factor
+            messeges_within_session_count += 1
+
+        positive_sum += msg_dict['positive']
+        negative_sum += msg_dict['negative']
+
+    weighted_ratio = (positive_sum-negative_sum)/messeges_within_session_count
+    print(weighted_ratio)
+    # response = response_text(weigted_ratio)
     # return response

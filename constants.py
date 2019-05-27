@@ -13,3 +13,5 @@ IBM_WATSON_VERSION = '2016-05-19'
 IBM_WATSON_URL = 'https://gateway.watsonplatform.net/tone-analyzer/api'
 IBM_WATSON_APIKEY = get_env_variable('IBM_WATSON_APIKEY', IBM_WATSON_APIKEY_DEFAULT)
 DATABASE_URL = get_env_variable('DATABASE_URL', DATABASE_URL_DEFAULT)
+# Number of minutes a message should remain relevant
+MINUTES_FOR_A_CHAT_SESSION = 60
