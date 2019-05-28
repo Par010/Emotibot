@@ -1,12 +1,16 @@
 import sys
 from flask import Flask, request
+from pymessenger import Bot
 
 import datetime
 
 
-from constants import VERIFICATION_TOKEN
+from constants import VERIFICATION_TOKEN, PAGE_ACCESS_TOKEN
 from analysis import tone_analysing, generate_response
 from database import insert_update_msg_details
+
+
+bot = Bot(PAGE_ACCESS_TOKEN)
 
 app = Flask(__name__)
 
@@ -37,12 +41,17 @@ def webhook():
                     if 'text' in message['message']:
                         # check if text attribute is present in message
                         text_msg = message['message']['text']
+                        if text_msg == 'mood' or text_msg == 'Mood':
+                            response = generate_response(sender_id)
+                            bot.send_text_message(sender_id, response['mood'])
+                            break
                     else:
                         text_msg = 'no text sent'
                     mood = tone_analysing(text_msg)
                     print(sender_id, timestamp, mood)
                     insert_update_msg_details(sender_id, timestamp, mood[0], mood[1])
                     response = generate_response(sender_id)
+                    bot.send_text_message(sender_id, response['response_text'])
                     print(response)
 
     return 'ok', 200

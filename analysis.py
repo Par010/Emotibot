@@ -106,18 +106,18 @@ def get_response_dict(weighted_ratio):
     {'response': "Oh! That's great!", 'mood': 'Positive'}
     """
     if 1 >= weighted_ratio > 0.15:
-        response = "Oh! That's great!"
+        response_text = "Oh! That's great!"
         mood = 'Positive'
     elif 0.15 >= weighted_ratio > 0:
-        response = "That is fine."
+        response_text = "That is fine."
         mood = 'Positive-Neutral'
     elif weighted_ratio == 0:
-        response = "Interesting"
+        response_text = "Interesting"
         mood = 'Neutral'
     elif 0 > weighted_ratio >= -0.15:
-        response = "That's not nice"
+        response_text = "That's not nice"
         mood = "Negative-Neutral"
     else:
-        response = "I feel so bad about this."
+        response_text = "I feel so bad about this."
         mood = "Negative"
-    return {'response': response, 'mood': mood}
+    return {'response': response_text, 'mood': mood}
