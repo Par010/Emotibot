@@ -14,3 +14,4 @@ PAGE_ACCESS_TOKEN = get_env_variable('PAGE_ACCESS_TOKEN', PAGE_ACCESS_TOKEN_DEFA
 HELP_TEXT = "Hi there! I'm an emotion bot, whatever you say makes me feel things " \
             "and changes my mood, I'm here for you, talk to me as long as you want." \
             " You can \n\n 1. Vent as much you want! \n 2. Type 'mood' to check my mood"
+SCHEDULED_HOURS = 2

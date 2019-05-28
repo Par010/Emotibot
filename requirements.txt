@@ -3,3 +3,4 @@ pymessenger==0.0.7.0
 ibm-watson==3.0.4
 pymongo[tls,srv]==3.8.0
 gunicorn==19.7.1
+APScheduler==2.1.2
