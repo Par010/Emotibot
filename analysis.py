@@ -61,11 +61,11 @@ def generate_response(sender_id):
     for message in sender.get('messages'):
         # every message sent by the sender is collected in sender_msg_lst
         sender_msg_lst.append(message)
-    response = calculate_weights(sender_msg_lst)
+    response = calculate_weighted_factor(sender_msg_lst)
     return response
 
 
-def calculate_weights(sender_msg_lst):
+def calculate_weighted_factor(sender_msg_lst):
     """This function calculates the weighted positive and negative values based on the time passed since sending the
     message, it works on the idea that messages sent recently are more relevant than older messages. A weighted ratio is
     calculated after averaging the weighted positive and negative values derived from the sender's messages.
@@ -94,7 +94,30 @@ def calculate_weights(sender_msg_lst):
         positive_sum += msg_dict['positive']
         negative_sum += msg_dict['negative']
 
-    weighted_ratio = (positive_sum-negative_sum)/messeges_within_session_count
+    weighted_ratio = round((positive_sum-negative_sum)/messeges_within_session_count, 2)
     print(weighted_ratio)
-    # response = response_text(weigted_ratio)
-    # return response
+    response = get_response_dict(weighted_ratio)
+    return response
+
+
+def get_response_dict(weighted_ratio):
+    """This function takes in the weighted_ratio and responds with an appropriate response to be sent back to the sender
+    response structure:
+    {'response': "Oh! That's great!", 'mood': 'Positive'}
+    """
+    if 1 >= weighted_ratio > 0.15:
+        response = "Oh! That's great!"
+        mood = 'Positive'
+    elif 0.15 >= weighted_ratio > 0:
+        response = "That is fine."
+        mood = 'Positive-Neutral'
+    elif weighted_ratio == 0:
+        response = "Interesting"
+        mood = 'Neutral'
+    elif 0 > weighted_ratio >= -0.15:
+        response = "That's not nice"
+        mood = "Negative-Neutral"
+    else:
+        response = "I feel so bad about this."
+        mood = "Negative"
+    return {'response': response, 'mood': mood}

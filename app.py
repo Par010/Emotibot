@@ -43,6 +43,7 @@ def webhook():
                     print(sender_id, timestamp, mood)
                     insert_update_msg_details(sender_id, timestamp, mood[0], mood[1])
                     response = generate_response(sender_id)
+                    print(response)
 
     return 'ok', 200
 
