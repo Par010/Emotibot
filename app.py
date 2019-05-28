@@ -1,11 +1,9 @@
-import sys
 from flask import Flask, request
 from pymessenger import Bot
 
 import datetime
 
-
-from constants import VERIFICATION_TOKEN, PAGE_ACCESS_TOKEN
+from constants import VERIFICATION_TOKEN, PAGE_ACCESS_TOKEN, HELP_TEXT
 from analysis import tone_analysing, generate_response
 from database import insert_update_msg_details
 
@@ -29,7 +27,6 @@ def verify():
 def webhook():
     """Handles POST request sent by facebook webhook, receives messages and handles them"""
     data = request.get_json()
-    log(data)
     if data['object'] == 'page':
         for entry in data['entry']:
             for message in entry['messaging']:
@@ -41,26 +38,28 @@ def webhook():
                     if 'text' in message['message']:
                         # check if text attribute is present in message
                         text_msg = message['message']['text']
+                        if text_msg == 'help' or text_msg == 'Help':
+                            # send help text
+                            bot.send_text_message(sender_id, HELP_TEXT)
+                            break
                         if text_msg == 'mood' or text_msg == 'Mood':
+                            # if the sender asks for the bots mood,
+                            #  check the current weighted_ratio and send the current mood
                             response = generate_response(sender_id)
                             bot.send_text_message(sender_id, response['mood'])
                             break
                     else:
                         text_msg = 'no text sent'
+                    # analyse the sentence sent with the help of IBM Watson
                     mood = tone_analysing(text_msg)
-                    print(sender_id, timestamp, mood)
+                    # insert or update the message sent to the sender_id object
                     insert_update_msg_details(sender_id, timestamp, mood[0], mood[1])
+                    # generate the appropriate response for the text_msg
                     response = generate_response(sender_id)
+                    # send the response generated to the sender
                     bot.send_text_message(sender_id, response['response_text'])
-                    print(response)
 
     return 'ok', 200
-
-
-def log(message):
-    # check the message JSON on terminal
-    print(message)
-    sys.stdout.flush()
 
 
 if __name__ == '__main__':

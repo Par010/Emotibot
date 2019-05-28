@@ -2,6 +2,7 @@ import pymongo
 
 from constants import DATABASE_URL
 
+
 # pymongo database setup
 client = pymongo.MongoClient(DATABASE_URL)
 db = client.development

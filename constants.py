@@ -1,13 +1,7 @@
-import os
 from env_vars import VERIFICATION_TOKEN_DEFAULT, IBM_WATSON_APIKEY_DEFAULT, DATABASE_URL_DEFAULT, \
     PAGE_ACCESS_TOKEN_DEFAULT
+from helpers import get_env_variable
 
-
-def get_env_variable(var_name, default=None):
-    """Check if the var_name is in virtual environment or pass a default"""
-    if var_name not in os.environ:
-        os.environ[var_name] = default
-    return os.environ[var_name]
 
 VERIFICATION_TOKEN = get_env_variable('VERIFICATION_TOKEN', VERIFICATION_TOKEN_DEFAULT)
 IBM_WATSON_VERSION = '2016-05-19'
@@ -17,3 +11,6 @@ DATABASE_URL = get_env_variable('DATABASE_URL', DATABASE_URL_DEFAULT)
 # Number of minutes a message should remain relevant
 MINUTES_FOR_A_CHAT_SESSION = 60
 PAGE_ACCESS_TOKEN = get_env_variable('PAGE_ACCESS_TOKEN', PAGE_ACCESS_TOKEN_DEFAULT)
+HELP_TEXT = "Hi there! I'm an emotion bot, whatever you say makes me feel things " \
+            "and changes my mood, I'm here for you, talk to me as long as you want." \
+            " You can \n\n 1. Vent as much you want! \n 2. Type 'mood' to check my mood"

@@ -95,7 +95,6 @@ def calculate_weighted_factor(sender_msg_lst):
         negative_sum += msg_dict['negative']
 
     weighted_ratio = round((positive_sum-negative_sum)/messeges_within_session_count, 2)
-    print(weighted_ratio)
     response = get_response_dict(weighted_ratio)
     return response
 
@@ -120,4 +119,4 @@ def get_response_dict(weighted_ratio):
     else:
         response_text = "I feel so bad about this."
         mood = "Negative"
-    return {'response': response_text, 'mood': mood}
+    return {'response_text': response_text, 'mood': mood}
