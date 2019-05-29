@@ -14,6 +14,7 @@
   * [Screenshots](#screenshots)
 
 
+<a name="key-features"></a>
 ## Key Features
 
 
@@ -29,13 +30,14 @@
   - You can also decide what messages are relevant by changing how long a message should be deemed relevant in the application. By default, it is 60 minutes.
 
 
+<a name="demo"></a>
 ## Demo
 
 You can check the [facebook page](https://www.facebook.com/EmotiBot-343970259597074) or message EmotiBot directly on [messenger](http://m.me/343970259597074)
 
 ##### Note: Unfortunately, the app is in development as of now. Send a message and wait till I can add you as a tester through facebook for developers, and then you can start chatting with EmotiBot.
 
-
+<a name="usage"></a>
 ## Usage
 
 ##### Note: We provide defaults for everything, so the application will run out of the box. Although, to custimize your application you need to go through setup.
@@ -110,7 +112,7 @@ SCHEDULED_HOURS = A-NUMBER-IN-HOURS
 
 ```
 
-
+<a name="built-with"></a>
 ## Built With
 
 
@@ -122,6 +124,7 @@ SCHEDULED_HOURS = A-NUMBER-IN-HOURS
 
 * **PyMongo** -  Python distribution containing tools for working with MongoDB, and is the recommended way to work with MongoDB from Python.
 
+<a name="screenshots"></a>
 ## Screenshots
 
 ![picture](static/images/website_intro.png)
