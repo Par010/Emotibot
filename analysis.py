@@ -94,7 +94,10 @@ def calculate_weighted_factor(sender_msg_lst):
         positive_sum += msg_dict['positive']
         negative_sum += msg_dict['negative']
 
-    weighted_ratio = round((positive_sum-negative_sum)/messeges_within_session_count, 2)
+    if messeges_within_session_count == 0:
+        weighted_ratio = 0
+    else:
+        weighted_ratio = round((positive_sum-negative_sum)/messeges_within_session_count, 2)
     response = get_response_dict(weighted_ratio)
     return response
 
