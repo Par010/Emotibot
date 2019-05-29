@@ -1,6 +1,3 @@
-
-<a href=" https://www.facebook.com/EmotiBot-343970259597074">![picture](static/images/chat-icon.jpg)</a>
-
 # EmotiBot
 
 
@@ -10,11 +7,11 @@
 
 ## Table of Contents
 
-  * <a href="#key-features">Key Features</a>
-  * <a href="#demo">Demo</a>
-  * <a href="#usage">Usage</a>
-  * <a href="#built-with">Built With</a>
-  * <a href="#screenshots">Screenshots</a>
+  * [Key Features](#key-features)
+  * [Demo](#demo)
+  * [Usage](#usage)
+  * [Built With](#built-with)
+  * [Screenshots](#screenshots)
 
 
 ## Key Features
