@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href=" https://www.facebook.com/EmotiBot-343970259597074"><img src=![chat-icon](static/imgages/chat-icon.jpg) width="200"></a>
+  <a href=" https://www.facebook.com/EmotiBot-343970259597074"><img src=![picture](static/imgages/chat-icon.jpg) width="200"></a>
   <br>
   EmotiBot
   <br>
@@ -126,5 +126,5 @@ SCHEDULED_HOURS = A-NUMBER-IN-HOURS
 
 ## Screenshots
 
-<img src=![website_intro](static/imgages/website_intro.png) width="200">
-<img src=![phone_notext](static/imgages/phone_notext.png) width="200"><img src=![positive](static/imgages/positive.png) width="200"><img src=![two_negatives](static/imgages/two_negatives.png) width="200"><img src=![help](static/imgages/help.png) width="200"><img src=![Mood](static/imgages/Mood.png) width="200">
+<img src=![picture](static/imgages/website_intro.png) width="200">
+<img src=![picture](static/imgages/phone_notext.png) width="200"><img src=![picture](static/imgages/positive.png) width="200"><img src=![picture](static/imgages/two_negatives.png) width="200"><img src=![picture](static/imgages/help.png) width="200"><img src=![picture](static/imgages/Mood.png) width="200">
