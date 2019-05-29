@@ -1,5 +1,5 @@
 
-<a href=" https://www.facebook.com/EmotiBot-343970259597074">![picture](static/imgages/chat-icon.jpg)</a>
+<a href=" https://www.facebook.com/EmotiBot-343970259597074">![picture](static/images/chat-icon.jpg)</a>
 
 # EmotiBot
 
@@ -127,6 +127,6 @@ SCHEDULED_HOURS = A-NUMBER-IN-HOURS
 
 ## Screenshots
 
-![picture](static/imgages/website_intro.png)
+![picture](static/images/website_intro.png)
 
-![picture](static/imgages/phone_notext.png)![picture](static/imgages/positive.png)![picture](static/imgages/two_negatives.png)![picture](static/imgages/help.png)![picture](static/imgages/Mood.png)
+![picture](static/images/phone_notext.png)![picture](static/images/positive.png)![picture](static/images/two_negatives.png)![picture](static/images/help.png)![picture](static/images/Mood.png)
