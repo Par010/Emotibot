@@ -19,6 +19,21 @@ cron = Scheduler(daemon=True)
 cron.start()
 
 
+@cron.interval_schedule(hours=SCHEDULED_HOURS)
+def delete_outdated_messages():
+    print('running')
+    """This function runs in the background to delete irrelevant text messages and empty up space"""
+    sender_id_lst = []
+    for obj in message_details.find({}):
+        # creating a list of all senders to clean up their messages
+        sender_id_lst.append(obj['_id'])
+    current_time = datetime.datetime.utcnow()
+    # All the timestamps older than the cut-off are deleted
+    cut_off_time = current_time - datetime.timedelta(minutes=MINUTES_FOR_A_CHAT_SESSION)
+    for sender in sender_id_lst:
+        message_details.update({'_id': sender}, {'$pull': {'messages': {'timestamp': {'$lte': cut_off_time}}}})
+
+
 @app.route('/', methods=['GET'])
 def verify():
     """Handles GET request sent by Facebook to verify token sent for callback URL Verification"""
@@ -66,20 +81,6 @@ def webhook():
                     bot.send_text_message(sender_id, response['response_text'])
 
     return 'ok', 200
-
-
-@cron.interval_schedule(hours=SCHEDULED_HOURS)
-def delete_outdated_messages():
-    """This function runs in the background to delete irrelevant text messages and empty up space"""
-    sender_id_lst = []
-    for obj in message_details.find({}):
-        # creating a list of all senders to clean up their messages
-        sender_id_lst.append(obj['_id'])
-    current_time = datetime.datetime.utcnow()
-    # All the timestamps older than the cut-off are deleted
-    cut_off_time = current_time - datetime.timedelta(minutes=MINUTES_FOR_A_CHAT_SESSION)
-    for sender in sender_id_lst:
-        message_details.update({'_id': sender}, {'$pull': {'messages': {'timestamp': {'$lte': cut_off_time}}}})
 
 
 # Shutdown your cron thread if the web process is stopped
