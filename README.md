@@ -1,20 +1,21 @@
-<h1 align="center">
-  <br>
-  <a href=" https://www.facebook.com/EmotiBot-343970259597074"><img src=![picture](static/imgages/chat-icon.jpg) width="200"></a>
-  <br>
-  EmotiBot
-  <br>
-</h1>
 
-<h4 align="center">An Emotion Bot setup on Facebook Messenger which changes it's feelings and responds based on what you say to it. It will become happy or sad while talking to you by using the IBM Watson Tone Analyzer for analysis</h4>
-<br>
-<p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#demo">Demo</a> •
-  <a href="#usage">Usage</a> •
-  <a href="#built-with">Built With</a> •
-  <a href="#screenshots">Screenshots</a>
-</p>
+<a href=" https://www.facebook.com/EmotiBot-343970259597074">![picture](static/imgages/chat-icon.jpg)</a>
+
+# EmotiBot
+
+
+### Description
+
+#### An Emotion Bot setup on Facebook Messenger which changes it's feelings and responds based on what you say to it. It will become happy or sad while talking to you by using the IBM Watson Tone Analyzer for analysis
+
+## Table of Contents
+
+  * <a href="#key-features">Key Features</a>
+  * <a href="#demo">Demo</a>
+  * <a href="#usage">Usage</a>
+  * <a href="#built-with">Built With</a>
+  * <a href="#screenshots">Screenshots</a>
+
 
 ## Key Features
 
@@ -126,5 +127,6 @@ SCHEDULED_HOURS = A-NUMBER-IN-HOURS
 
 ## Screenshots
 
-<img src=![picture](static/imgages/website_intro.png) width="200">
-<img src=![picture](static/imgages/phone_notext.png) width="200"><img src=![picture](static/imgages/positive.png) width="200"><img src=![picture](static/imgages/two_negatives.png) width="200"><img src=![picture](static/imgages/help.png) width="200"><img src=![picture](static/imgages/Mood.png) width="200">
+![picture](static/imgages/website_intro.png)
+
+![picture](static/imgages/phone_notext.png)![picture](static/imgages/positive.png)![picture](static/imgages/two_negatives.png)![picture](static/imgages/help.png)![picture](static/imgages/Mood.png)
